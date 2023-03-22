@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     public uint Points;
     private Affichage m_Affichage;
 
+    //win
+    public GameObject CheckpointWin;
+
     public void Awake()
     {
         animateur = GetComponent<Animator>();
@@ -114,6 +117,11 @@ public class PlayerController : MonoBehaviour
 
             /*if (Points == 10)
                 m_Affichage.openVictoire();*/
+        }
+
+        if (collision.gameObject.name == CheckpointWin.name)
+        {
+            m_Affichage.openVictoire();
         }
     }
 }
