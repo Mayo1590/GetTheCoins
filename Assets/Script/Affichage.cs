@@ -32,9 +32,7 @@ public class Affichage : MonoBehaviour
     public void closeMenu()
     {
         FenetreMenu.SetActive(false);
-        m_Player.Vies = 3;
-        m_Player.Points = 0;
-        Time.timeScale = 1;
+        m_Player.ResetGrame();
     }
 
     public void openGameOver()
@@ -46,9 +44,7 @@ public class Affichage : MonoBehaviour
     public void closeGameOver()
     {
         FenetreGameOver.SetActive(false);
-        m_Player.Vies = 3;
-        m_Player.Points = 0;
-        Time.timeScale = 1;
+        m_Player.ResetGrame();
     }
 
     public void openVictoire()
@@ -60,8 +56,6 @@ public class Affichage : MonoBehaviour
     public void closeVictoire()
     {
         FenetreVictoire.SetActive(false);
-        m_Player.Vies = 3;
-        m_Player.Points = 0;
-        Time.timeScale = 1;
+        m_Player.ResetGrame();
     }
 }

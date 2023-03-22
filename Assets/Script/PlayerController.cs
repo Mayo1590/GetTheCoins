@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     //déplacements
     private Animator animateur;
-    private Rigidbody2D rb;
+    public Rigidbody2D Rb;
     private SpriteRenderer sr;
 
     private bool grounded;
@@ -30,11 +30,12 @@ public class PlayerController : MonoBehaviour
 
     //win
     public GameObject CheckpointWin;
+    public GameObject CheckpointPlayerStart;
 
     public void Awake()
     {
         animateur = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        Rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
         GameObject a_affichage = GameObject.Find("Canvas");
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if (userJump && grounded)
         {
-            rb.AddForce(Vector2.up * JUMP_FORCE);
+            Rb.AddForce(Vector2.up * JUMP_FORCE);
             nbrJump++;
             userJump = false;
         }
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         if (userJump && nbrJump == 1 && !grounded)
         {
-            rb.AddForce(Vector2.up * JUMP_FORCE);
+            Rb.AddForce(Vector2.up * JUMP_FORCE);
             nbrJump = 0;
             userJump = false;
         }
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
         else if (movement > 0 && !VersDroite)
             SetDirection(true);
 
-        rb.velocity = new Vector2(movement * VitesseMax, rb.velocity.y);
+        Rb.velocity = new Vector2(movement * VitesseMax, Rb.velocity.y);
     }
 
     private void SetDirection(bool versDroite)
@@ -114,14 +115,19 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Coin"))
         {
             Points++;
-
-            /*if (Points == 10)
-                m_Affichage.openVictoire();*/
         }
 
         if (collision.gameObject.name == CheckpointWin.name)
         {
             m_Affichage.openVictoire();
         }
+    }
+
+    public void ResetGrame()
+    {
+        Rb.position = CheckpointPlayerStart.transform.position;
+        Time.timeScale = 1;
+        Vies = 3;
+        Points = 0;
     }
 }
