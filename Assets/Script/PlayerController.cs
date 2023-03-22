@@ -60,8 +60,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * JUMP_FORCE);
             nbrJump++;
             userJump = false;
-
-            //Debug.Log("Nbre Jump : " + nbrJump);
         }
         else if (grounded)
             nbrJump = 0;
@@ -71,8 +69,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * JUMP_FORCE);
             nbrJump = 0;
             userJump = false;
-
-            //Debug.Log("Nbre Jump : " + nbrJump);
         }
 
         
@@ -103,8 +99,6 @@ public class PlayerController : MonoBehaviour
             Vies--;
             timerImmunite = 1;
 
-            //Debug.Log("collision avec :" + collision.gameObject + " Vies :" + Vies);
-
             if (Vies == 0)
             {
 
@@ -118,10 +112,8 @@ public class PlayerController : MonoBehaviour
         {
             Points++;
 
-            //Debug.Log("points : " + Points);
-
-            if (Points == 10)
-                m_Affichage.openVictoire();
+            /*if (Points == 10)
+                m_Affichage.openVictoire();*/
         }
     }
 }
