@@ -10,6 +10,7 @@ public class Affichage : MonoBehaviour
     public GameObject FenetreGameOver;
     public GameObject FenetreVictoire;
     public GameObject FenetreMenu;
+    public Text TextWin;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class Affichage : MonoBehaviour
     public void closeMenu()
     {
         FenetreMenu.SetActive(false);
-        m_Player.ResetGrame();
+        m_Player.ResetGame();
     }
 
     public void openGameOver()
@@ -44,11 +45,12 @@ public class Affichage : MonoBehaviour
     public void closeGameOver()
     {
         FenetreGameOver.SetActive(false);
-        m_Player.ResetGrame();
+        m_Player.ResetGame();
     }
 
     public void openVictoire()
     {
+        TextWin.text = "Victoire ! Points : " + m_Player.Points;
         FenetreVictoire.SetActive(true);
         Time.timeScale = 0;
     }
@@ -56,6 +58,6 @@ public class Affichage : MonoBehaviour
     public void closeVictoire()
     {
         FenetreVictoire.SetActive(false);
-        m_Player.ResetGrame();
+        m_Player.ResetGame();
     }
 }

@@ -18,7 +18,6 @@ public class CoinSpawner : MonoBehaviour
         if (timer > Pause)
         {
             Instantiate(prefab, transform.position, Quaternion.identity);
-            Pause = Pause * 2;
             timer = 0;
         }
     }

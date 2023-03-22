@@ -17,7 +17,6 @@ public class EnnemiSpawner : MonoBehaviour
         if (timer > Pause)
         {
             Instantiate(prefab, transform.position, Quaternion.identity);
-            Pause = Pause - 0.5f;
             timer = 0;
         }
     }

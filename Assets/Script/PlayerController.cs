@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     //win
     public GameObject CheckpointWin;
     public GameObject CheckpointPlayerStart;
+    public GameObject Fell;
+
+    private bool m_fell = false;
 
     public void Awake()
     {
@@ -101,14 +104,7 @@ public class PlayerController : MonoBehaviour
         if (timerImmunite < 0 && collision.gameObject.layer == LayerMask.NameToLayer("Ennemi"))
         {
             Vies--;
-            timerImmunite = 1;
-
-            if (Vies == 0)
-            {
-
-                m_Affichage.openGameOver();
-            }
-                
+            timerImmunite = 1;   
         }
 
         //calcule des points
@@ -121,9 +117,31 @@ public class PlayerController : MonoBehaviour
         {
             m_Affichage.openVictoire();
         }
+
+        if (collision.gameObject.name == Fell.gameObject.name)
+        {
+            m_fell = true;
+            Rb.position = CheckpointPlayerStart.transform.position;
+        }
+
+        if (timerImmunite < 0 && m_fell)
+        {
+            timerImmunite = 1;
+            Vies--;
+            if (Points != 0)
+            {
+                Points--;
+            }
+            m_fell = false;
+        }
+
+        if (Vies == 0)
+        {
+            m_Affichage.openGameOver();
+        }
     }
 
-    public void ResetGrame()
+    public void ResetGame()
     {
         Rb.position = CheckpointPlayerStart.transform.position;
         Time.timeScale = 1;
