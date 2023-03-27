@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //private Coin m_Coin;
+    public GameObject Coins;
     //déplacements
     private Animator animateur;
     public Rigidbody2D Rb;
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
         GameObject a_affichage = GameObject.Find("Canvas");
         m_Affichage = a_affichage.GetComponent<Affichage>();
+
     }
 
     private void Update()
@@ -147,5 +150,18 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1;
         Vies = 3;
         Points = 0;
+        //m_Coin.ResetCoins();
+        /*var coins = Coins.GetComponentsInChildren<Transform>();
+        Debug.Log(coins);
+        foreach (var coin in coins)
+        {
+            Debug.Log(coin.gameObject);
+            coin.gameObject.SetActive(true);
+        }*/
+
+        for (int i = 0; i < Coins.transform.childCount; i++)
+        {
+            Coins.transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 }
