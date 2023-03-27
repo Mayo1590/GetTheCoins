@@ -1,1 +1,1 @@
-Jeux fait avec unity dans un cadre scolaire.
+Jeu fait avec unity dans un cadre scolaire.
